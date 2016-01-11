@@ -34,12 +34,16 @@ obj.foo = 'boop'; // => throws
 ``` javascript
 var setReadOnly = require( 'utils-define-read-only-property' );
 
-var foo = {};
+class Foo {
+	constructor( name ) {
+		setReadOnly( this, 'name', name );
+	}
+}
 
-setReadOnly( foo, 'beep', 'boop' );
+var foo = new Foo( 'beep' );
 
 try {
-	foo.beep = 'bop';
+	foo.name = 'boop';
 } catch ( err ) {
 	console.error( err.message );
 }
